@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 20:24:29 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/03/30 20:24:37 by diegofranci      ###   ########.fr       */
+/*   Created: 2022/03/31 12:37:29 by diegofranci       #+#    #+#             */
+/*   Updated: 2022/03/31 12:52:49 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_alpha(char *str)
+int	ft_isalnum(int c)
 {
-	int	index;
-
-	if (str[0] == '\0')
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+		|| (c >= '0' && c <= '9'))
 	{
 		return (1);
 	}
-	else
-	{
-		index = 0;
-		while (str[index] != '\0')
-		{
-			if (!(str[index] >= 'a' && str[index] <= 'z'))
-				if (!(str[index] >= 'A' && str[index] <= 'Z'))
-					return (0);
-			index++;
-		}
-		return (1);
-	}
+	return (0);
 }
