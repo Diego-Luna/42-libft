@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:11:08 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/04 10:18:06 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/05 13:10:54 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,20 @@
 # include <unistd.h>
 
 /* Checker */
-int	ft_isalpha(const int c);
-int	ft_isdigit(int c);
-int	ft_isalnum(int c);
-int	ft_isascii(char c);
-int	ft_isprint(char c);
+int		ft_isdigit(int c);
+int		ft_isalnum(int c);
+int		ft_isascii(char c);
+int		ft_isprint(char c);
+int		ft_isalpha(const int c);
+
+/* Conv */
+int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
+
+/* Io */
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putendl_fd(char *s, int fd);
 
 #endif
