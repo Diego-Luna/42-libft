@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 20:16:58 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/03/31 20:20:40 by diegofranci      ###   ########.fr       */
+/*   Created: 2022/03/31 19:07:48 by diegofranci       #+#    #+#             */
+/*   Updated: 2022/04/06 12:16:59 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-int	ft_memcmp(const void *str1, const void *str2, size_t n)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t			i;
-	unsigned char	*ch1;
-	unsigned char	*ch2;
+	int	i;
 
 	i = 0;
-	ch1 = (unsigned char *)str1;
-	ch2 = (unsigned char *)str2;
-	while (i < n)
+	if (!s)
+		return (0);
+	while (s[i] && s[i] != c)
 	{
-		if (ch1[i] != ch2[i])
-			return (ch1[i] - ch2[i]);
 		i++;
+	}
+	if (s[i] == c)
+	{
+		return (i);
 	}
 	return (0);
 }
