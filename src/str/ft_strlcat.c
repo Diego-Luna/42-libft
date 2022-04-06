@@ -6,11 +6,13 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:43:30 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/03/31 18:45:46 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/06 11:14:36 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+#include <string.h>
+
+size_t	ft_strlcat(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
 	unsigned int	length_dest;
