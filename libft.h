@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:11:08 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/06 12:42:02 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/06 12:53:10 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
 
 /* Checker */
 int		ft_isdigit(int c);
