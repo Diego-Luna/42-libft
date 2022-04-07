@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:11:08 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/07 10:29:15 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 12:30:59 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_split_next
+{
+	size_t	start;
+	size_t	length;
+}				t_split_next;
 
 /* Checker */
 int		ft_isalpha(int c);
