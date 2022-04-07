@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 12:38:59 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/01 12:46:15 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 13:19:49 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	ft_atoi(const char *str)
 	int	positive;
 
 	i = 0;
-	positive = 1;
 	result = 0;
-	while (str[i] != '\0' && str[i] == 32)
+	positive = 1;
+	while (str[i] != '\0' && str[i] <= 32)
 	{
 		i++;
 	}

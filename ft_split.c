@@ -6,103 +6,98 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:14:13 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/04 12:22:46 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 12:30:03 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	**ft_free_tab(char **table)
+static char
+	**ft_alloc_split(char const *s, char c)
 {
-	int	i;
+	size_t	i;
+	char	**split;
+	size_t	total;
 
-	if (!table)
-		return (NULL);
 	i = 0;
-	while (table[i])
+	total = 0;
+	while (s[i])
 	{
-		free(table[i]);
-		table[i] = NULL;
+		if (s[i] == c)
+			total++;
 		i++;
 	}
-	free (table);
+	split = (char **)malloc(sizeof(s) * (total + 2));
+	if (!split)
+		return (NULL);
+	return (split);
+}
+
+void
+	*ft_free_all_split_alloc(char **split, size_t elts)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < elts)
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 	return (NULL);
 }
 
-int	ft_get_word_end(char *str, char separator, int i)
+static void
+	*ft_split_range(char **split, char const *s,
+		t_split_next *st, t_split_next *lt)
 {
-	while (str[i] && str[i] != separator)
-	{
-		i++;
-	}
-	return (i);
+	split[lt->length] = ft_substr(s, st->start, st->length);
+	if (!split[lt->length])
+		return (ft_free_all_split_alloc(split, lt->length));
+	lt->length++;
+	return (split);
 }
 
-int	ft_fill_result(char **table, const char *str, char separator)
+static void
+	*ft_split_by_char(char **split, char const *s, char c)
 {
-	int	i;
-	int	word_end;
+	size_t			i;
+	t_split_next	st;
+	t_split_next	lt;
 
 	i = 0;
-	while (str[i])
+	lt.length = 0;
+	lt.start = 0;
+	while (s[i])
 	{
-		if (str[i] != separator)
+		if (s[i] == c)
 		{
-			word_end = ft_get_word_end(str, separator, i);
-			*table = ft_calloc(sizeof(**table), word_end - i + 1);
-			if (!*table)
-				return (0);
-			ft_memcpy(*table, str + i, word_end - i);
-			table++;
-			i = word_end - 1;
+			st.start = lt.start;
+			st.length = (i - lt.start);
+			if (i > lt.start && !ft_split_range(split, s, &st, &lt))
+				return (NULL);
+			lt.start = i + 1;
 		}
 		i++;
 	}
-	return (1);
-}
-
-int	ft_count_words(char *str, char separator)
-{
-	int	i;
-	int	nb_words;
-
-	i = 0;
-	nb_words = 0;
-	while (str[i] == separator)
-	{
-		i++;
-	}
-	while (str[i])
-	{
-		if (str[i] != separator)
-		{
-			nb_words++;
-			while (str[i] && str[i] != separator)
-			{
-				i++;
-			}
-		}
-		if (str[i])
-		{
-			i++;
-		}
-	}
-	return (nb_words);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**result;
-
-	result = ft_calloc(sizeof(*result), ft_count_words(s, c) + 1);
-	if (!result)
-	{
+	st.start = lt.start;
+	st.length = (i - lt.start);
+	if (i > lt.start && i > 0 && !ft_split_range(split, s, &st, &lt))
 		return (NULL);
-	}
-	if (!ft_fill_result(result, s, c))
-	{
-		return (ft_free_tab(result));
-	}
-	return (result);
+	split[lt.length] = 0;
+	return (split);
+}
+
+char
+	**ft_split(char const *s, char c)
+{
+	char	**split;
+
+	split = ft_alloc_split(s, c);
+	if (!split)
+		return (NULL);
+	if (!ft_split_by_char(split, s, c))
+		return (NULL);
+	return (split);
 }

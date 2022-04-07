@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 09:25:41 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/07 09:34:14 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 12:24:40 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	tmp;
-
 	if (!lst || !f)
 	{
 		return ;

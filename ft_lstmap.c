@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 09:38:10 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/07 10:02:09 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 12:27:02 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		ft_lstadd_back(&first_elem, new_elem);
 		lst = lst->next;
 	}
+	return (first_elem);
 }

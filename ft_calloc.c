@@ -6,11 +6,11 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 12:48:06 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/05 13:44:23 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 13:29:38 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {

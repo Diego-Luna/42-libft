@@ -6,15 +6,13 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 12:40:43 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/03/31 12:51:10 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 12:40:41 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_isascii(char c)
 {
-	if (c >= 0 && c <= 127)
-	{
-		return (1);
-	}
-	return (0);
+	return (c >= 0 && c <= 127);
 }

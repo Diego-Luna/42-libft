@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:12:52 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/06 12:10:48 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 11:06:24 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < len)

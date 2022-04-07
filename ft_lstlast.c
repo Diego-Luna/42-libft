@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 14:33:51 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/06 14:49:12 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 12:23:55 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ t_list	*ft_lstlast(t_list *lst)
 		}
 		lst = lst->next;
 	}
+	return (lst);
 }

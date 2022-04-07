@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:03:18 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/04 11:13:53 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 12:22:41 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_is_in(char c, char const *str)
 	return (0);
 }
 
-int	ft_len(char *str, char *set)
+int	ft_len(char const *str, char const *set)
 {
 	int	i;
 	int	c_count;

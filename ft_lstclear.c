@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 07:58:43 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/07 09:24:54 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/07 12:25:20 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list	tmp;
+	t_list	*tmp;
 
 	if (!lst || !*lst || !del)
 	{
