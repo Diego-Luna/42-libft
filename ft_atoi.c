@@ -6,35 +6,32 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 12:38:59 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/07 13:19:49 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/08 15:05:18 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	result;
-	int	positive;
+	int		i;
+	int		positive;
+	int		result;
 
-	i = 0;
 	result = 0;
 	positive = 1;
-	while (str[i] != '\0' && str[i] <= 32)
-	{
+	i = 0;
+	while (str[i] && (str[i] == '\f' || str[i] == '\t' || str[i] == ' '
+			|| str[i] == '\n' || str[i] == '\r' || str[i] == '\v'))
 		i++;
-	}
 	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i] == '-')
-		{
-			positive *= -1;
-		}
-		i++;
+		if (str[i++] == '-')
+			positive = -1;
 	}
-	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		result = (str[i] - 48) + (result * 10);
-		i++;
+		result *= 10;
+		result += str[i++] - '0';
 	}
-	return (result * positive);
+	result *= positive;
+	return (result);
 }
