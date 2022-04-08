@@ -6,98 +6,115 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:14:13 by diegofranci       #+#    #+#             */
-/*   Updated: 2022/04/07 12:30:03 by diegofranci      ###   ########.fr       */
+/*   Updated: 2022/04/08 12:03:12 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-static char
-	**ft_alloc_split(char const *s, char c)
+static char	*ft_strncpy(char *dest, const char *src, unsigned int n)
 {
-	size_t	i;
-	char	**split;
-	size_t	total;
+	unsigned int		i;
 
 	i = 0;
-	total = 0;
-	while (s[i])
+	while (src[i] && i < n)
 	{
-		if (s[i] == c)
-			total++;
+		dest[i] = src[i];
 		i++;
 	}
-	split = (char **)malloc(sizeof(s) * (total + 2));
-	if (!split)
-		return (NULL);
-	return (split);
-}
-
-void
-	*ft_free_all_split_alloc(char **split, size_t elts)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < elts)
+	while (i < n)
 	{
-		free(split[i]);
+		dest[i] = '\0';
 		i++;
 	}
-	free(split);
-	return (NULL);
+	dest[i] = '\0';
+	return (dest);
 }
 
-static void
-	*ft_split_range(char **split, char const *s,
-		t_split_next *st, t_split_next *lt)
+static int	ft_separator(char c, char *charset)
 {
-	split[lt->length] = ft_substr(s, st->start, st->length);
-	if (!split[lt->length])
-		return (ft_free_all_split_alloc(split, lt->length));
-	lt->length++;
-	return (split);
-}
-
-static void
-	*ft_split_by_char(char **split, char const *s, char c)
-{
-	size_t			i;
-	t_split_next	st;
-	t_split_next	lt;
+	int		i;
 
 	i = 0;
-	lt.length = 0;
-	lt.start = 0;
-	while (s[i])
+	while (charset[i])
 	{
-		if (s[i] == c)
+		if (c == charset[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static const char
+	*ft_next_str(const char **pos_in_str, char *charset, int *next_str_len)
+{
+	int			i;
+	const char	*str_start;
+
+	*next_str_len = 0;
+	str_start = 0;
+	i = 0;
+	while ((*pos_in_str)[i])
+	{
+		if (ft_separator((*pos_in_str)[i], charset) && str_start != 0)
 		{
-			st.start = lt.start;
-			st.length = (i - lt.start);
-			if (i > lt.start && !ft_split_range(split, s, &st, &lt))
-				return (NULL);
-			lt.start = i + 1;
+			*pos_in_str = str_start + *next_str_len;
+			return (str_start);
 		}
+		else if (!ft_separator((*pos_in_str)[i], charset) && str_start == 0)
+			str_start = &(*pos_in_str)[i];
+		if (!ft_separator((*pos_in_str)[i], charset))
+			*next_str_len = *next_str_len + 1;
 		i++;
 	}
-	st.start = lt.start;
-	st.length = (i - lt.start);
-	if (i > lt.start && i > 0 && !ft_split_range(split, s, &st, &lt))
-		return (NULL);
-	split[lt.length] = 0;
-	return (split);
+	*pos_in_str = str_start + *next_str_len;
+	if (*next_str_len == 0)
+		return (0);
+	return (str_start);
 }
 
-char
-	**ft_split(char const *s, char c)
+static char	**ft_build_tab(const char *str, char *charset)
 {
-	char	**split;
+	int			nb_str;
+	char		**strs;
+	int			next_str_len;
+	const char	*pos_in_str;
 
-	split = ft_alloc_split(s, c);
-	if (!split)
-		return (NULL);
-	if (!ft_split_by_char(split, s, c))
-		return (NULL);
-	return (split);
+	nb_str = 0;
+	next_str_len = 0;
+	pos_in_str = str;
+	while (ft_next_str(&pos_in_str, charset, &next_str_len))
+		nb_str++;
+	strs = (char **)malloc(sizeof(char *) * (nb_str + 1));
+	if (!(strs))
+		return (0);
+	return (strs);
+}
+
+//char	**ft_split(char *str, char *charset)
+char	**ft_split(char const *s, char c)
+{
+	int			i;
+	char		**strs;
+	int			next_str_len;
+	const char	*next_str;
+	const char	*pos_in_str;
+
+	strs = ft_build_tab(s, &c);
+	if (!(strs))
+		return (0);
+	i = 0;
+	pos_in_str = s;
+	next_str = ft_next_str(&pos_in_str, &c, &next_str_len);
+	while (next_str)
+	{
+		strs[i] = (char *)malloc(sizeof(char) * next_str_len + 1);
+		if (!(strs[i]))
+			return (0);
+		ft_strncpy(strs[i], next_str, next_str_len);
+		i++;
+		next_str = ft_next_str(&pos_in_str, &c, &next_str_len);
+	}
+	strs[i] = 0;
+	return (strs);
 }
